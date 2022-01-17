@@ -1,0 +1,21 @@
+To set up:
+
+1) Set up symbolic links
+
+js -> ../data/js
+css -> ../data/css
+Snapper.pde -> ../data/Snapper.pde
+
+2) Combine the *.pde files into one:
+
+cat ../*.pde > CDMS_combined.pde
+
+3) Modify a copy of the index.html from https://wheelof.com/sketch/
+
+4) Start a local HTML server in this folder:
+
+python -m SimpleHTTPServer
+
+5) Go to this web page:
+
+http://localhost:8000/

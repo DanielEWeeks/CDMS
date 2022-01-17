@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>CDMS : Built with Processing and Processing.js</title>
+		<meta name="Generator" content="Processing" />
+        <link rel=stylesheet type="text/css" href="css/bootstrap.min.css">
+        <link rel=stylesheet type="text/css" href="css/CDMS.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+		<script type="text/javascript" src="js/jquery.enhanced.cookie.js"></script>
+		<!--[if lt IE 9]>
+			<script type="text/javascript">alert("Try a better web browser, like Chrome.");</script>
+		<![endif]-->
+		<script src="processing.js" type="text/javascript"></script>
+		<script type="text/javascript">
+// convenience function to get the id attribute of generated sketch html element
+function getProcessingSketchId () { return 'CDMS'; }
+</script>
+
+		<script src="js/CDMSUtils.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="content">
+		  <div id="subcontent">
+			<div>
+				<canvas id="CDMS" data-processing-sources="CDMS_combined.pde" 
+						width="1400" height="828">
+					<p>Your browser does not support the canvas tag.</p>
+					<!-- Note: you can put any alternative content here. -->
+				</canvas>
+				<noscript>
+					<p>JavaScript is required to view the contents of this page.</p>
+				</noscript>
+	    	</div>
+
+			<div class="btn-group" data-toggle="buttons">
+				  <label class="btn btn-default bcmd" id="lcmd:rrr">
+				    <input type="radio" name="options" id="bcmd:rrr" autocomplete="off"><i class="fa fa-fast-backward fa-2x"></i>
+				  </label>
+				  <label class="btn btn-default bcmd" id="lcmd:rr">
+				    <input type="radio" name="options" id="bcmd:rr" autocomplete="off"><i class="fa fa-backward fa-2x"></i>
+				  </label>
+				  <label class="btn btn-default bcmd active" id="lcmd:pause" >
+				    <input type="radio" name="options" id="bcmd:pause" autocomplete="off" checked><i class="fa fa-pause fa-2x"></i>
+				  </label>
+				  <label class="btn btn-default bcmd" id="lcmd:play">
+				    <input type="radio" name="options" id="bcmd:play" autocomplete="off"><i class="fa fa-play fa-2x"></i>
+				  </label>
+				  <label class="btn btn-default bcmd" id="lcmd:ff">
+				    <input type="radio" name="options" id="bcmd:ff" autocomplete="off"><i class="fa fa-forward fa-2x"></i>
+				  </label>
+				  <label class="btn btn-default bcmd" id="lcmd:fff">
+				    <input type="radio" name="options" id="bcmd:fff" autocomplete="off"><i class="fa fa-fast-forward fa-2x"></i>
+				  </label>
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<div class="btn-group" data-toggle="buttons">
+				  <label class="btn btn-default bcmd scmd active" id="lcmd:setup:0">
+				    <input type="radio" name="options" id="bcmd:setup:0" autocomplete="off">A
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:1">
+				    <input type="radio" name="options" id="bcmd:setup:1" autocomplete="off">B
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:2">
+				    <input type="radio" name="options" id="bcmd:setup:2" autocomplete="off">C
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:3">
+				    <input type="radio" name="options" id="bcmd:setup:3" autocomplete="off">D
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:4">
+				    <input type="radio" name="options" id="bcmd:setup:4" autocomplete="off">E
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:5">
+				    <input type="radio" name="options" id="bcmd:setup:5" autocomplete="off">F
+				  </label>
+				  <label class="btn btn-default bcmd scmd" id="lcmd:setup:6">
+				    <input type="radio" name="options" id="bcmd:setup:6" autocomplete="off">G
+				  </label>
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<div class="btn-group">
+            	<button type=button class="btn btn-default bcmd" id="bcmd:snapshot"><i class="fa fa-camera fa-2x"></i></button>
+            	<button type=button class="btn btn-default bcmd" id="bcmd:erase"><i class="fa fa-eraser fa-2x"></i></button>
+            	<button type=button class="btn btn-default bcmd" id="bcmd:help"><i class="fa fa-question fa-2x"></i></button>
+			</div>
+			<div id="info-link">
+				<a href="https://github.com/jbum/CDMS" target="_blank">Source code &amp; technical info</a>
+			</div>
+            <!--
+	        <a href="#" class="credits-btn">Credits...</a>
+	        <p />
+			<div id="CDMS-credits">
+    		  <p id="description">A simulation of Joe Freedman's <a href="http://leafpdx.bigcartel.com/product/cycloid-drawing-machine">Cycloid Drawing Machine</a></p>
+			  <p id="sources">Source code by Jim Bumgardner: <a href="https://github.com/jbum/CDMS">Availble on GitHub</a> </p>
+			  <p>
+			  Built with <a href="http://processing.org" title="Processing">Processing</a>
+			  and <a href="http://processingjs.org" title="Processing.js">Processing.js</a>
+			  </p>
+   		    </div>
+   		    -->
+   		  </div>
+		</div>
+		<canvas id="Snapper" data-processing-sources="Snapper.pde" 
+				width="648" height="648">
+			<p>Your browser does not support the canvas tag.</p>
+		</canvas>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	</body>
+</html>
+
