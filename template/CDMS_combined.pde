@@ -13,7 +13,7 @@ float seventyTwoScale = inchesToPoints / 72.0; // Don't change this
 
 int[][] setupTeeth = {
     {60,41},
-    {60,94,41,36},
+    {60,94,41,30},
     {150,50,100,34,40},
     {144, 100, 72},
     {150, 98, 100},
@@ -51,10 +51,10 @@ Boolean[][] setupInversions = {
   {false},
 };
 
-float bWidth = 18.14;
-float bHeight = 11.51;
-float pCenterX = 8.87;
-float pCenterY = 6.61;
+float bWidth = 15.375;
+float bHeight = 7.5;
+float pCenterX = 7.75;
+float pCenterY = 3.75;
 float toothRadius = 0.0956414*inchesToPoints;
 float meshGap = 1.5*mmToInches*inchesToPoints; // 1.5 mm gap needed for meshing gears
 PFont  gFont, hFont, nFont;
@@ -124,9 +124,9 @@ void setup() {
 
   discPoint = new MountPoint("DP", pCenterX, pCenterY);
   
-  rails.add(new LineRail(2.22, 10.21, .51, .6));
-  rails.add(new LineRail(3.1, 10.23, 3.1, .5));
-  rails.add(new LineRail(8.74, 2.41, 9.87, .47));
+  rails.add(new LineRail(3.75,0.5,4.875,1.5));
+  rails.add(new LineRail(10.75,5.875,13.875,5.875));
+  rails.add(new LineRail(10.5,1.5,12.25,0.375));
   rails.add(new ArcRail(pCenterX, pCenterY, 6.54, radians(-68), radians(-5)));
   rails.add(new ArcRail(8.91, 3.91, 7.79, radians(-25), radians(15)));
 
@@ -202,7 +202,7 @@ void drawingSetup(int setupIdx, boolean resetPaper)
     turnTable = addGear(0,"Turntable"); 
     crank = addGear(1,"Crank");
     crankRail = rails.get(10);
-    pivotRail = rails.get(1);
+    pivotRail = rails.get(0);
     crank.mount(crankRail,0);
     turnTable.mount(discPoint, 0);
     crank.snugTo(turnTable);
@@ -222,7 +222,7 @@ void drawingSetup(int setupIdx, boolean resetPaper)
     Gear anchor = addGear(2,"Anchor");
     Gear fulcrumGear = addGear(3,"FulcrumGear");
     crankRail = rails.get(1);
-    anchorRail = rails.get(10);
+    anchorRail = rails.get(2);
     pivotRail = rails.get(0);
     crank.mount(crankRail, 0); // will get fixed by snugto
     anchor.mount(anchorRail,0);
@@ -762,7 +762,7 @@ static final float kCRLabelStart = 1*inchesToPoints;
 static final float kPenLabelStart = 0.5*inchesToPoints;  // was 4.75
 static final float kPenLabelIncr =  0.5*inchesToPoints;  // was negative
 static final float kPenNotchIncr =  0.25*inchesToPoints; // was negative
-static final float kPaperRad = 4.625*inchesToPoints;
+static final float kPaperRad = 3.0625*inchesToPoints;
 
 class MountPoint implements Channel, Selectable {
   Channel itsChannel = null;
@@ -1403,7 +1403,7 @@ void gearInit()
   gearSetups.put( 74, new GearSetup( 74, 0.40625, 2.031,   4));
   gearSetups.put( 72, new GearSetup( 72, 0.375,   2.0,     4));
   gearSetups.put( 66, new GearSetup( 66, 0.375,   1.6875,  3));
-  gearSetups.put( 60, new GearSetup( 60, 0.3125,  1.625,   3));
+  gearSetups.put( 60, new GearSetup( 60, 0.375,   1.6875,  3));
   gearSetups.put( 58, new GearSetup( 58, 0.3125,  1.5625,  3));
   gearSetups.put( 50, new GearSetup( 50, 0.25,    1.3125,  2));      // notch joins axel
   gearSetups.put( 48, new GearSetup( 48, 0.375,   1.25,    2));

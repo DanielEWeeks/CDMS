@@ -5,6 +5,9 @@ To set up:
 js -> ../data/js
 css -> ../data/css
 Snapper.pde -> ../data/Snapper.pde
+title.png -> ../data/title.png
+title_dark.png -> ../data/title_dark.png
+favicon.ico -> ../data/favicon.ico
 
 2) Combine the *.pde files into one:
 
@@ -19,3 +22,4 @@ python -m SimpleHTTPServer
 5) Go to this web page:
 
 http://localhost:8000/
+
