@@ -13,11 +13,11 @@ float seventyTwoScale = inchesToPoints / 72.0; // Don't change this
 
 int[][] setupTeeth = {
     {60,41},
-    {60,94,41,30},
-    {150,50,100,34,40},
-    {144, 100, 72},
-    {150, 98, 100},
-    {150, 100, 74},
+    {60,47,41,30},
+    {60,47,41,36},
+    {60,41,47,30},
+    {60,47,30,23},
+    {60,47,36,30},
     {150,50,100,34,40,50,50},
   };
 
@@ -55,7 +55,7 @@ float bWidth = 15.375;
 float bHeight = 7.5;
 float pCenterX = 7.75;
 float pCenterY = 3.75;
-float toothRadius = 0.0956414*inchesToPoints;
+float toothRadius = 0.125*inchesToPoints;
 float meshGap = 1.5*mmToInches*inchesToPoints; // 1.5 mm gap needed for meshing gears
 PFont  gFont, hFont, nFont;
 PImage titlePic;
@@ -124,7 +124,7 @@ void setup() {
 
   discPoint = new MountPoint("DP", pCenterX, pCenterY);
   
-  rails.add(new LineRail(3.75,0.5,4.875,1.5));
+  rails.add(new LineRail(3.75,0.5,5.875,2.5));
   rails.add(new LineRail(10.75,5.875,13.875,5.875));
   rails.add(new LineRail(10.5,1.5,12.25,0.375));
   rails.add(new ArcRail(pCenterX, pCenterY, 6.54, radians(-68), radians(-5)));
@@ -216,14 +216,18 @@ void drawingSetup(int setupIdx, boolean resetPaper)
     penRig = addPen(penMount);
     break;
 
-  case 1: // moving fulcrum & separate crank
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5: // moving fulcrum & separate crank
     turnTable = addGear(0,"Turntable"); 
     crank = addGear(1,"Crank");    crank.contributesToCycle = false;
     Gear anchor = addGear(2,"Anchor");
     Gear fulcrumGear = addGear(3,"FulcrumGear");
     crankRail = rails.get(1);
-    anchorRail = rails.get(2);
-    pivotRail = rails.get(0);
+    anchorRail = rails.get(0);
+    pivotRail = rails.get(2);
     crank.mount(crankRail, 0); // will get fixed by snugto
     anchor.mount(anchorRail,0);
     fulcrumGear.mount(pivotRail, 0); // will get fixed by snugto
@@ -245,140 +249,7 @@ void drawingSetup(int setupIdx, boolean resetPaper)
 
     break;
     
-  case 2: // orbiting gear
-    crankRail = rails.get(9);
-    anchorRail = rails.get(4);
-    pivotRail = rails.get(1);
-    
-    // Always need these...
-    turnTable = addGear(0,"Turntable");
-    crank = addGear(1,"Crank");    crank.contributesToCycle = false;
-  
-    // These are optional
-    Gear  anchorTable = addGear(2,"AnchorTable");
-    Gear  anchorHub = addGear(3,"AnchorHub"); anchorHub.contributesToCycle = false;
-    Gear  orbit = addGear(4,"Orbit");
-  
-    orbit.isMoving = true;
-  
-    // Setup gear relationships and mount points here...
-    crank.mount(crankRail, 0);
-    turnTable.mount(discPoint, 0);
-    crank.snugTo(turnTable);
-    crank.meshTo(turnTable);
-  
-    anchorTable.mount(anchorRail, .315); // this is a hack - we need to allow the anchorTable to snug to the crank regardless of it's size...
-    anchorTable.snugTo(crank);
-    anchorTable.meshTo(crank);
-
-    anchorHub.stackTo(anchorTable);
-    anchorHub.isFixed = true;
-
-    orbit.mount(anchorTable,0);
-    orbit.snugTo(anchorHub);
-    orbit.meshTo(anchorHub);
-  
-    // Setup Pen
-    slidePoint = addMP(0, "SP", pivotRail);
-    anchorPoint = addMP(1, "AP", orbit);
-    cRod = addCR(0, slidePoint, anchorPoint);
-    penMount = addMP(2, "EX", cRod);
-    penRig = addPen(penMount);
-    break;
-
-  case 3:// 2 pen rails, variation A
-    pivotRail = rails.get(1);
-    Channel aRail = rails.get(10);
-    Channel bRail = rails.get(7);
-    turnTable = addGear(0,"Turntable");
-    Gear aGear = addGear(1,"A");
-    Gear bGear = addGear(2,"B");
-
-    turnTable.mount(discPoint, 0);
-    aGear.mount(aRail, 0.5);
-    aGear.snugTo(turnTable);
-    aGear.meshTo(turnTable);
-
-    bGear.mount(bRail, 0.5);
-    bGear.snugTo(turnTable);
-    bGear.meshTo(turnTable);
-
-    slidePoint = addMP(0, "SP", aGear);
-    anchorPoint = addMP(1, "AP", bGear);
-    cRod = addCR(0, slidePoint, anchorPoint);
-
-    MountPoint slidePoint2 = addMP(2, "SP2", pivotRail);
-    MountPoint anchorPoint2 = addMP(3, "AP2", cRod);
-    ConnectingRod cRod2 = addCR(1, slidePoint2, anchorPoint2);
-    penMount = addMP(4,"EX",cRod2);
-    penRig = addPen(penMount);
-
-    break;
-
-  case 4: // 2 pen rails, variation B
-    pivotRail = rails.get(1);
-    aRail = rails.get(10);
-    bRail = rails.get(7);
-    turnTable = addGear(0,"TurnTable");
-    aGear = addGear(1,"A");
-    bGear = addGear(2,"B");
-
-    turnTable.mount(discPoint, 0);
-    aGear.mount(aRail, 0.5);
-    aGear.snugTo(turnTable);
-    aGear.meshTo(turnTable);
-
-    bGear.mount(bRail, 0.5);
-    bGear.snugTo(turnTable);
-    bGear.meshTo(turnTable);
-
-    slidePoint = addMP(0, "SP", pivotRail);
-    anchorPoint = addMP(1, "AP", bGear);
-    cRod = addCR(0, slidePoint, anchorPoint);
-
-    slidePoint2 = addMP(2, "SP2", aGear);
-    anchorPoint2 = addMP(3, "AP2", cRod);
-    cRod2 = addCR(1, anchorPoint2, slidePoint2);
-
-    penMount = addMP(4, "EX", cRod2);
-
-    penRig = addPen(penMount);
-
-    break;
-
-  case 5: // 3 pen rails
-    pivotRail = rails.get(1);
-    aRail = rails.get(10);
-    bRail = rails.get(7);
-    turnTable = addGear(0,"Turntable");
-    aGear = addGear(1,"A");
-    bGear = addGear(2,"B");
-
-    turnTable.mount(discPoint, 0);
-    aGear.mount(aRail, 0.5);
-    aGear.snugTo(turnTable);
-    aGear.meshTo(turnTable);
-
-    bGear.mount(bRail, 0.5);
-    bGear.snugTo(turnTable);
-    bGear.meshTo(turnTable);
-
-    slidePoint = addMP(0, "SP", pivotRail);
-    anchorPoint = addMP(1, "AP", bGear);
-    cRod = addCR(0, slidePoint, anchorPoint);
-
-    slidePoint2 = addMP(2, "SP2", aGear);
-    anchorPoint2 = addMP(3, "AP2", pivotRail);
-    cRod2 = addCR(1, slidePoint2, anchorPoint2);
-
-    MountPoint slidePoint3 = addMP(4, "SP3", cRod2);
-    MountPoint anchorPoint3 = addMP(5, "SA3", cRod);
-    ConnectingRod cRod3 = addCR(2, anchorPoint3, slidePoint3);
-    penMount = addMP(6, "EX", cRod3);
-    
-    penRig = addPen(penMount);
-
-    break;    
+   
   case 6: // orbiting gear with rotating fulcrum (#1 and #2 combined)
     crankRail = rails.get(9);
     anchorRail = rails.get(4);
@@ -1369,7 +1240,7 @@ class ArcRail implements Channel {
 
 
 int[] rgTeeth = { // regular gears
-  30, 32, 34,35, 36,38, 40, 41,47, 48, 50, 58, 60, 66, 72, 74, 80, 90, 94, 98, 100, 108, 
+  23, 30, 32, 34,35, 36,38, 40, 41,42,45,47, 48, 50, 58, 60, 66, 72, 74, 80, 90, 94, 98, 100, 108, 
  };
 int [] ttTeeth = { // turntable gears
    60, 120, 144, 150,
@@ -1420,6 +1291,7 @@ void gearInit()
   gearSetups.put( 30, new GearSetup( 30, 0.3125,  0.968,   1));
   gearSetups.put( 32, new GearSetup( 32, 0.3125,  0.8125,  1));
   gearSetups.put( 30, new GearSetup( 30, 0.3125,  0.75,    1));
+  gearSetups.put( 23, new GearSetup( 23, 0.3125,  0.75,    1));
 }
 
 class Gear implements Channel, Selectable {
