@@ -1238,9 +1238,10 @@ class ArcRail implements Channel {
   }
 }
 
+//   19, 23, 30, 32, 34,35, 36,38, 40, 41,42,45,47, 48, 50, 58, 60, 66, 72, 74, 80, 90, 94, 98, 100, 108, 
 
 int[] rgTeeth = { // regular gears
-  23, 30, 32, 34,35, 36,38, 40, 41,42,45,47, 48, 50, 58, 60, 66, 72, 74, 80, 90, 94, 98, 100, 108, 
+  19, 23, 25, 30, 35, 36, 38, 40, 41, 42, 44, 45, 47, 48, 50, 58, 60, 66, 72, 74, 80, 90, 94, 98, 100, 108, 
  };
 int [] ttTeeth = { // turntable gears
    60, 120, 144, 150,
@@ -1287,11 +1288,12 @@ void gearInit()
   gearSetups.put( 38, new GearSetup( 38, 0.3125,  0.968,   1));
   gearSetups.put( 36, new GearSetup( 36, 0.3125,  0.968,   1));
   gearSetups.put( 35, new GearSetup( 35, 0.3125,  0.968,   1));
-  gearSetups.put( 34, new GearSetup( 34, 0.3125,  0.84375, 1));
+// gearSetups.put( 34, new GearSetup( 34, 0.3125,  0.84375, 1));
   gearSetups.put( 30, new GearSetup( 30, 0.3125,  0.968,   1));
-  gearSetups.put( 32, new GearSetup( 32, 0.3125,  0.8125,  1));
-  gearSetups.put( 30, new GearSetup( 30, 0.3125,  0.75,    1));
+// gearSetups.put( 30, new GearSetup( 30, 0.3125,  0.75,    1));
+  gearSetups.put( 25, new GearSetup( 25, 0.3125,  0.75,    1));
   gearSetups.put( 23, new GearSetup( 23, 0.3125,  0.75,    1));
+  gearSetups.put( 19, new GearSetup( 19, 0.3125,  0.75,    1));
 }
 
 class Gear implements Channel, Selectable {
