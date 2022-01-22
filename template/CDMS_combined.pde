@@ -17,7 +17,7 @@ int[][] setupTeeth = {
     {60,47,41,36},
     {60,41,47,30},
     {60,47,30,23},
-    {60,47,36,30},
+    {60,47,36,47},
     {150,50,100,34,40,50,50},
   };
 
@@ -235,7 +235,7 @@ void drawingSetup(int setupIdx, boolean resetPaper)
 
     crank.snugTo(turnTable);
     anchor.snugTo(turnTable);
-    fulcrumGear.snugTo(crank);    
+    fulcrumGear.snugTo(turnTable);    
 
     crank.meshTo(turnTable);
     anchor.meshTo(turnTable);
